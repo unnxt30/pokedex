@@ -6,16 +6,17 @@ import (
 	"os"
 )
 
-func repl_begin() {
+func repl_begin(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
-
 	for {
 		fmt.Print("\nPOKEDEX > ")
 
 		scanner.Scan()
 		text := scanner.Text()
 
-		cliFunc()[text].callback()
+		cmd := cliFunc()[text]
+
+		cmd.callback(cfg)
 
 		continue
 	}
@@ -34,11 +35,21 @@ func cliFunc() map[string]cliCommand {
 			description: "Exit the Pokedex",
 			callback:    commandExit,
 		},
+		"map": {
+			name:        "map",
+			description: "Display next list of location areas",
+			callback:    commandMapf,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Display next list of location areas of previous page",
+			callback:    commandMapb,
+		},
 	}
 }
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
