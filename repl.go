@@ -6,6 +6,11 @@ import (
 	"os"
 )
 
+type config struct {
+	next_page_URL     *string
+	previous_page_URL *string
+}
+
 func repl_begin(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
