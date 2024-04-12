@@ -61,6 +61,11 @@ func cliFunc() map[string]cliCommand {
 			description: "Display the pokemons available in the location",
 			callback: exploreArea,
 		},
+		"catch": {
+			name: "catch",
+			description: "Catch a pokemon you spotted",
+			callback: Catch_pokemon,
+		},
 	}
 }
 
