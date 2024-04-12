@@ -24,6 +24,7 @@ func Repl_begin(cfg *config) {
 		if len(argArray) > 1{
 			cmd := cliFunc()[argArray[0]]
 			cmd.callback(cfg, argArray[1]);
+			continue
 		}
 		cmd := cliFunc()[argArray[0]];
 
@@ -65,6 +66,16 @@ func cliFunc() map[string]cliCommand {
 			name: "catch",
 			description: "Catch a pokemon you spotted",
 			callback: Catch_pokemon,
+		},
+		"inspect": {
+			name: "inspect",
+			description: "inspect a pokemon inside your inventory",
+			callback: inspectPokemon,
+		},
+		"pokedex": {
+			name: "pokedex",
+			description: "display all your caught pokemons.",
+			callback: pokedex,
 		},
 	}
 }
