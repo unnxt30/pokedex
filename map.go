@@ -6,7 +6,7 @@ import (
 	"github.com/unnxt30/pokedex/internal/pokeapi"
 )
 
-func commandMapf(cfg *config) error {
+func commandMapf(cfg *config, s string) error {
 
 	location_data := pokeapi.Get_list(cfg.next_page_URL)
 
@@ -21,7 +21,7 @@ func commandMapf(cfg *config) error {
 
 }
 
-func commandMapb(cfg *config) error {
+func commandMapb(cfg *config, s string) error {
 	if cfg.previous_page_URL == nil {
 		return errors.New("you are on the first page")
 
